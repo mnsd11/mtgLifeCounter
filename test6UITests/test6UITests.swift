@@ -23,9 +23,19 @@ class test6UITests: XCTestCase {
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+        // UI tests must launch the application that they test
+        
+        let element = XCUIApplication().windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.children(matching: .staticText).matching(identifier: "+1").element(boundBy: 1).tap()
+        
+        let button = element.children(matching: .button).element(boundBy: 3)
+        button.tap()
+        element.children(matching: .staticText).matching(identifier: "-1").element(boundBy: 1).tap()
+        button.tap()
+        element.children(matching: .staticText).matching(identifier: "+1").element(boundBy: 0).tap()
+        button.tap()
+        element.children(matching: .staticText).matching(identifier: "-1").element(boundBy: 0).tap()
+        button.tap()
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

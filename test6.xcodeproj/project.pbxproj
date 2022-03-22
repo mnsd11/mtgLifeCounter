@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,33 @@
 		4944217626EB89AE00DAE476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4944217426EB89AE00DAE476 /* LaunchScreen.storyboard */; };
 		4944218126EB89AE00DAE476 /* test6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944218026EB89AE00DAE476 /* test6Tests.swift */; };
 		4944218C26EB89AE00DAE476 /* test6UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944218B26EB89AE00DAE476 /* test6UITests.swift */; };
+		49C8A9542750E3ED008850F7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49C8A9532750E3ED008850F7 /* SnapKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		49C8A9502750E06F008850F7 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		49C8A9512750E071008850F7 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		4944217D26EB89AE00DAE476 /* PBXContainerItemProxy */ = {
@@ -58,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C8A9542750E3ED008850F7 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,10 +170,15 @@
 				4944216126EB89AE00DAE476 /* Resources */,
 			);
 			buildRules = (
+				49C8A9512750E071008850F7 /* PBXBuildRule */,
+				49C8A9502750E06F008850F7 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
 			name = test6;
+			packageProductDependencies = (
+				49C8A9532750E3ED008850F7 /* SnapKit */,
+			);
 			productName = test6;
 			productReference = 4944216326EB89AE00DAE476 /* test6.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +250,9 @@
 				Base,
 			);
 			mainGroup = 4944215A26EB89AE00DAE476;
+			packageReferences = (
+				49C8A9522750E3ED008850F7 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 4944216426EB89AE00DAE476 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -450,7 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = minus.test6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -469,7 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = minus.test6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -597,6 +632,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49C8A9522750E3ED008850F7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		49C8A9532750E3ED008850F7 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49C8A9522750E3ED008850F7 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4944216F26EB89AE00DAE476 /* test6.xcdatamodeld */ = {

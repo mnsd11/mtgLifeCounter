@@ -10,6 +10,6 @@ import RealmSwift
 
 class HealthsTwo: Object {
     
-    @objc dynamic var healthTwo = 0
+    @objc dynamic var healthTwo = 20
  
 }

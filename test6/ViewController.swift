@@ -6,17 +6,25 @@
 //
 import Foundation
 import UIKit
-//import SnapKit  
+import RealmSwift
+import SnapKit  
+
+
+
 
 class ViewController: UIViewController {
-
+    
+    let realm = try! Realm()
+    
+    
     let colors : [UIColor] = [.blue, .darkGray]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            self.view.backgroundColor=UIColor.gray
         
-      
+        self.view.backgroundColor=UIColor.gray
+        
+        
         playerTwoLifeLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
         playerTwoPlusHealthLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
         playerTwoMinusHealthLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
@@ -30,6 +38,13 @@ class ViewController: UIViewController {
         resetLifes.layer.cornerRadius=9;
         playerOneLife=20
         playerTwoLife=20
+        
+        let results = realm.objects(HealthsOne.self)
+        playerOneLife=results[results.count-1].healthOne
+        
+        let results2 = realm.objects(HealthsTwo.self)
+        playerTwoLife=results2[results2.count-1].healthTwo
+        
         updatePlayerOneLife()
         updatePlayerTwoLife()
         
@@ -87,16 +102,26 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    
     @IBAction func playerOnePlusOneHealth(_ sender: Any) {
         playerOneLife+=1
-                updatePlayerOneLife()
+        updatePlayerOneLife()
+        
+        let value = HealthsOne(value: [Int(playerOneLife)])
+        try! self.realm.write {
+            self.realm.add(value)
+            print(value)
+        }
+        
     }
     
     
     @IBAction func playerOneMinusOneHealth(_ sender: Any) {
         playerOneLife-=1
-        
-        
+
+
         if playerOneLife<1 {
             playerOneLife=0
             updatePlayerOneLife()
@@ -106,13 +131,27 @@ class ViewController: UIViewController {
         else { updatePlayerOneLife()
         }
      
+        let value = HealthsOne(value: [Int(playerOneLife)])
+        try! self.realm.write {
+            self.realm.add(value)
+            print(value)
+        }
     }
     
     
     
     @IBAction func playerTwoPlusOneHealth(_ sender: Any) {
         playerTwoLife+=1
-                updatePlayerTwoLife()
+        updatePlayerTwoLife()
+        
+        
+        let value2 = HealthsTwo(value: [Int(playerTwoLife)])
+        try! self.realm.write {
+            self.realm.add(value2)
+            print(value2)
+        }
+        
+        
     }
     
     
@@ -127,6 +166,13 @@ class ViewController: UIViewController {
         }
         else { updatePlayerTwoLife()
         }
+        
+        let value2 = HealthsTwo(value: [Int(playerTwoLife)])
+        try! self.realm.write {
+            self.realm.add(value2)
+            print(value2)
+        }
+        
     }
     
     func resetAllHp() {
@@ -134,7 +180,9 @@ class ViewController: UIViewController {
         playerTwoLife=20
         updatePlayerOneLife()
         updatePlayerTwoLife()
-    
+        
+        
+        
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -142,6 +190,22 @@ class ViewController: UIViewController {
         playerTwoLife=20
         updatePlayerOneLife()
         updatePlayerTwoLife()
+        
+        
+        
+        let value1 = HealthsOne(value: [playerOneLife])
+        try! self.realm.write {
+            self.realm.add(value1)
+            print("after reset \(value1)")
+        }
+        
+        
+        let value2 = HealthsTwo(value: [playerTwoLife])
+        try! self.realm.write {
+            self.realm.add(value2)
+            print("after reset \(value2)")
+            
+        }
     }
     
     
@@ -160,4 +224,3 @@ class ViewController: UIViewController {
     
     
 }
-

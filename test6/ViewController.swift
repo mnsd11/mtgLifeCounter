@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.view.backgroundColor=UIColor.gray
         
         
@@ -36,21 +36,43 @@ class ViewController: UIViewController {
         playerTwoPlusHealth.layer.cornerRadius=9;
         playerTwoMinusHealth.layer.cornerRadius=9;
         resetLifes.layer.cornerRadius=9;
-        playerOneLife=20
-        playerTwoLife=20
         
-        let results = realm.objects(HealthsOne.self)
-        playerOneLife=results[results.count-1].healthOne
-        
-        let results2 = realm.objects(HealthsTwo.self)
-        playerTwoLife=results2[results2.count-1].healthTwo
-        
-        updatePlayerOneLife()
-        updatePlayerTwoLife()
-        
+        displayValuesHp1()
+        displayValuesHp2()
     }
-
-    func showAlertButtonTapped1() {
+    
+    var isValuesHpWasChangesFor2User = false
+    var isValuesHpWasChangesFor1User = false
+    
+    func displayValuesHp1() {
+        if isValuesHpWasChangesFor1User == true {
+            let results = realm.objects(HealthsOne.self)
+            playerOneLife = results[results.count-1].healthOne
+            updatePlayerOneLife()
+            } else {
+                playerOneLife = 20
+                updatePlayerOneLife()
+                print("inititalize20")
+            }
+            
+        }
+    
+    //
+ 
+    func displayValuesHp2() {
+        if isValuesHpWasChangesFor2User == true {
+            let results2 = realm.objects(HealthsTwo.self)
+            playerTwoLife = results2[results2.count-1].healthTwo
+            updatePlayerTwoLife()
+        } else {
+                playerTwoLife = 20
+                updatePlayerTwoLife()
+            }
+        }
+    
+    
+    
+    func showAlertButtonTapped1ForSmallPoints() {
         let alert = UIAlertController(title: "Player1 your health point less than 1. You lose.", message: "Players life's values restored to their original state", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
@@ -59,13 +81,36 @@ class ViewController: UIViewController {
         resetAllHp()
     }
     
-    func showAlertButtonTapped2() {
+    func showAlertButtonTapped2ForSmallPoints() {
         let alert = UIAlertController(title: "Player2 your health point less than 1. You lose.", message: "Players life's values restored to their original state", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
         resetAllHp()
+    }
+    
+    
+    func showAlertButtonTapped1ForBigPoints() {
+        let alert = UIAlertController(title: "Very Many HP for 1st user", message: "Do not try +1 for this user", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        playerOneLife = 999
+        updatePlayerOneLife()
+    }
+    
+    
+    
+    func showAlertButtonTapped2ForBigPoints() {
+        let alert = UIAlertController(title: "Very Many HP for 2nd user", message: "Do not try +1 for this user", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        playerTwoLife = 999
+        updatePlayerTwoLife()
     }
     
     
@@ -101,13 +146,21 @@ class ViewController: UIViewController {
     @IBAction func playerOnePlusHealth(_ sender: Any) {
     }
     
-    
-    
-    
+
     
     @IBAction func playerOnePlusOneHealth(_ sender: Any) {
         playerOneLife+=1
-        updatePlayerOneLife()
+        isValuesHpWasChangesFor1User=true
+        
+        
+        if playerOneLife>29 {
+            playerOneLife=30
+            updatePlayerOneLife()
+            sleep(3)
+            showAlertButtonTapped1ForBigPoints()
+        }
+        else { updatePlayerOneLife()
+        }
         
         let value = HealthsOne(value: [Int(playerOneLife)])
         try! self.realm.write {
@@ -120,13 +173,14 @@ class ViewController: UIViewController {
     
     @IBAction func playerOneMinusOneHealth(_ sender: Any) {
         playerOneLife-=1
-
+        isValuesHpWasChangesFor1User=true
+     
 
         if playerOneLife<1 {
             playerOneLife=0
             updatePlayerOneLife()
             sleep(3)
-            showAlertButtonTapped1()
+            showAlertButtonTapped1ForSmallPoints()
         }
         else { updatePlayerOneLife()
         }
@@ -142,7 +196,17 @@ class ViewController: UIViewController {
     
     @IBAction func playerTwoPlusOneHealth(_ sender: Any) {
         playerTwoLife+=1
-        updatePlayerTwoLife()
+        isValuesHpWasChangesFor1User=true
+   
+        
+        if playerTwoLife>29 {
+            playerTwoLife=30
+            updatePlayerTwoLife()
+            sleep(3)
+            showAlertButtonTapped2ForBigPoints()
+            }
+            else { updatePlayerTwoLife()
+        }
         
         
         let value2 = HealthsTwo(value: [Int(playerTwoLife)])
@@ -157,12 +221,15 @@ class ViewController: UIViewController {
     
     @IBAction func playerTwoMinusOneHealth(_ sender: Any) {
         playerTwoLife-=1
+        isValuesHpWasChangesFor1User=true
+   
+
         
         if playerTwoLife<1 {
             playerTwoLife=0
             updatePlayerTwoLife()
             sleep(3)
-            showAlertButtonTapped2()
+            showAlertButtonTapped2ForSmallPoints()
         }
         else { updatePlayerTwoLife()
         }

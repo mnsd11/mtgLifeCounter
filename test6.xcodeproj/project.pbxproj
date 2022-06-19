@@ -134,8 +134,6 @@
 		4944215A26EB89AE00DAE476 = {
 			isa = PBXGroup;
 			children = (
-				49AA8354284D66DF00AEA134 /* HealthOneDB.swift */,
-				49797E79284E533100DE148D /* HealthTwoDB.swift */,
 				4944216526EB89AE00DAE476 /* test6 */,
 				4944217F26EB89AE00DAE476 /* test6Tests */,
 				4944218A26EB89AE00DAE476 /* test6UITests */,
@@ -159,7 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				4944216626EB89AE00DAE476 /* AppDelegate.swift */,
+				49797E79284E533100DE148D /* HealthTwoDB.swift */,
 				4944216826EB89AE00DAE476 /* SceneDelegate.swift */,
+				49AA8354284D66DF00AEA134 /* HealthOneDB.swift */,
 				4944216A26EB89AE00DAE476 /* ViewController.swift */,
 				4944216C26EB89AE00DAE476 /* Main.storyboard */,
 				4944217226EB89AE00DAE476 /* Assets.xcassets */,

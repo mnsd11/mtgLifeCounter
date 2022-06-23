@@ -13,18 +13,15 @@ import SnapKit
 
 
 class ViewController: UIViewController {
-    
+    var isNotChangedOne = true
+    var isNotChangedTwo = true
     let realm = try! Realm()
-    
-    
     let colors : [UIColor] = [.blue, .darkGray]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.view.backgroundColor=UIColor.gray
-        
-        
         playerTwoLifeLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
         playerTwoPlusHealthLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
         playerTwoMinusHealthLabel.transform=CGAffineTransform(rotationAngle: CGFloat.pi)
@@ -37,39 +34,41 @@ class ViewController: UIViewController {
         playerTwoMinusHealth.layer.cornerRadius=9;
         resetLifes.layer.cornerRadius=9;
         
-        displayValuesHp1()
-        displayValuesHp2()
+        
+       
+        firstInitOne()
+        firstInitTwo()
+        
+        updatePlayerOneLife()
+        updatePlayerTwoLife()
+        
     }
     
-    var isValuesHpWasChangesFor2User = false
-    var isValuesHpWasChangesFor1User = false
-    
-    func displayValuesHp1() {
-        if isValuesHpWasChangesFor1User == true {
-            let results = realm.objects(HealthsOne.self)
-            playerOneLife = results[results.count-1].healthOne
-            updatePlayerOneLife()
-            } else {
-                playerOneLife = 20
-                updatePlayerOneLife()
-                print("inititalize20")
+    func firstInitOne() {
+        if isNotChangedOne {
+        let playerOneLife=20
+        let value = HealthsOne(value: [Int(playerOneLife)])
+        try! self.realm.write {
+            self.realm.add(value)
             }
-            
-        }
-    
-    //
- 
-    func displayValuesHp2() {
-        if isValuesHpWasChangesFor2User == true {
-            let results2 = realm.objects(HealthsTwo.self)
-            playerTwoLife = results2[results2.count-1].healthTwo
-            updatePlayerTwoLife()
         } else {
-                playerTwoLife = 20
-                updatePlayerTwoLife()
-            }
+            let results=realm.objects(HealthsOne.self)
+            playerOneLife=results[results.count-1].healthOne
         }
-    
+    }
+   
+    func firstInitTwo() {
+        if isNotChangedTwo {
+        let playerTwoLife=20
+        let value2 = HealthsTwo(value: [Int(playerTwoLife)])
+        try! self.realm.write {
+            self.realm.add(value2)
+            }
+        } else {
+            let results2=realm.objects(HealthsTwo.self)
+            playerTwoLife=results2[results2.count-1].healthTwo
+        }
+    }
     
     
     func showAlertButtonTapped1ForSmallPoints() {
@@ -97,7 +96,7 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
-        playerOneLife = 999
+        playerOneLife = 29
         updatePlayerOneLife()
     }
     
@@ -109,7 +108,7 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
-        playerTwoLife = 999
+        playerTwoLife = 29
         updatePlayerTwoLife()
     }
     
@@ -150,8 +149,7 @@ class ViewController: UIViewController {
     
     @IBAction func playerOnePlusOneHealth(_ sender: Any) {
         playerOneLife+=1
-        isValuesHpWasChangesFor1User=true
-        
+        isNotChangedOne=false
         
         if playerOneLife>29 {
             playerOneLife=30
@@ -173,8 +171,7 @@ class ViewController: UIViewController {
     
     @IBAction func playerOneMinusOneHealth(_ sender: Any) {
         playerOneLife-=1
-        isValuesHpWasChangesFor1User=true
-     
+        isNotChangedOne=false
 
         if playerOneLife<1 {
             playerOneLife=0
@@ -196,12 +193,9 @@ class ViewController: UIViewController {
     
     @IBAction func playerTwoPlusOneHealth(_ sender: Any) {
         playerTwoLife+=1
-        isValuesHpWasChangesFor1User=true
-   
+        isNotChangedTwo=false
         
         if playerTwoLife>29 {
-            playerTwoLife=30
-            updatePlayerTwoLife()
             sleep(3)
             showAlertButtonTapped2ForBigPoints()
             }
@@ -221,9 +215,7 @@ class ViewController: UIViewController {
     
     @IBAction func playerTwoMinusOneHealth(_ sender: Any) {
         playerTwoLife-=1
-        isValuesHpWasChangesFor1User=true
-   
-
+        isNotChangedTwo=false
         
         if playerTwoLife<1 {
             playerTwoLife=0

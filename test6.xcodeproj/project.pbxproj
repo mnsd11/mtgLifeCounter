@@ -16,8 +16,8 @@
 		4944217626EB89AE00DAE476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4944217426EB89AE00DAE476 /* LaunchScreen.storyboard */; };
 		4944218126EB89AE00DAE476 /* test6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944218026EB89AE00DAE476 /* test6Tests.swift */; };
 		4944218C26EB89AE00DAE476 /* test6UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944218B26EB89AE00DAE476 /* test6UITests.swift */; };
-		49797E7A284E533100DE148D /* HealthTwoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49797E79284E533100DE148D /* HealthTwoDB.swift */; };
-		49AA8355284D66DF00AEA134 /* HealthOneDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA8354284D66DF00AEA134 /* HealthOneDB.swift */; };
+		497A9B832864F2C400B13DD7 /* HealtOneDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A9B822864F2C400B13DD7 /* HealtOneDB.swift */; };
+		497A9B852864F2E200B13DD7 /* HealthTwoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A9B842864F2E200B13DD7 /* HealthTwoDB.swift */; };
 		49C8A9542750E3ED008850F7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49C8A9532750E3ED008850F7 /* SnapKit */; };
 		613F882310D2E6BF12F8F30B /* Pods_test6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58190CEA4BE05FD00B124F3 /* Pods_test6.framework */; };
 /* End PBXBuildFile section */
@@ -80,8 +80,8 @@
 		4944218726EB89AE00DAE476 /* test6UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = test6UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4944218B26EB89AE00DAE476 /* test6UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test6UITests.swift; sourceTree = "<group>"; };
 		4944218D26EB89AE00DAE476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49797E79284E533100DE148D /* HealthTwoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTwoDB.swift; sourceTree = "<group>"; };
-		49AA8354284D66DF00AEA134 /* HealthOneDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthOneDB.swift; sourceTree = "<group>"; };
+		497A9B822864F2C400B13DD7 /* HealtOneDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealtOneDB.swift; sourceTree = "<group>"; };
+		497A9B842864F2E200B13DD7 /* HealthTwoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTwoDB.swift; sourceTree = "<group>"; };
 		4D441E40E0C2F07C286A6B9A /* Pods-test6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test6.release.xcconfig"; path = "Target Support Files/Pods-test6/Pods-test6.release.xcconfig"; sourceTree = "<group>"; };
 		A58190CEA4BE05FD00B124F3 /* Pods_test6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_test6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4FED0E9DF677E623F9257EE /* Pods-test6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test6.debug.xcconfig"; path = "Target Support Files/Pods-test6/Pods-test6.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,15 +157,15 @@
 			isa = PBXGroup;
 			children = (
 				4944216626EB89AE00DAE476 /* AppDelegate.swift */,
-				49797E79284E533100DE148D /* HealthTwoDB.swift */,
+				497A9B842864F2E200B13DD7 /* HealthTwoDB.swift */,
 				4944216826EB89AE00DAE476 /* SceneDelegate.swift */,
-				49AA8354284D66DF00AEA134 /* HealthOneDB.swift */,
 				4944216A26EB89AE00DAE476 /* ViewController.swift */,
 				4944216C26EB89AE00DAE476 /* Main.storyboard */,
 				4944217226EB89AE00DAE476 /* Assets.xcassets */,
 				4944217426EB89AE00DAE476 /* LaunchScreen.storyboard */,
 				4944217726EB89AE00DAE476 /* Info.plist */,
 				4944216F26EB89AE00DAE476 /* test6.xcdatamodeld */,
+				497A9B822864F2C400B13DD7 /* HealtOneDB.swift */,
 			);
 			path = test6;
 			sourceTree = "<group>";
@@ -372,9 +372,9 @@
 			files = (
 				4944217126EB89AE00DAE476 /* test6.xcdatamodeld in Sources */,
 				4944216B26EB89AE00DAE476 /* ViewController.swift in Sources */,
-				49AA8355284D66DF00AEA134 /* HealthOneDB.swift in Sources */,
+				497A9B832864F2C400B13DD7 /* HealtOneDB.swift in Sources */,
 				4944216726EB89AE00DAE476 /* AppDelegate.swift in Sources */,
-				49797E7A284E533100DE148D /* HealthTwoDB.swift in Sources */,
+				497A9B852864F2E200B13DD7 /* HealthTwoDB.swift in Sources */,
 				4944216926EB89AE00DAE476 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

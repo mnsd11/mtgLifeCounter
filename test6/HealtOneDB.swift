@@ -1,5 +1,5 @@
 //
-//  HealthTwoDB.swift
+//  HealtOneDB.swift
 //  test6
 //
 //  Created by DIRECTOR on 23.06.2022.
@@ -9,14 +9,14 @@ import Foundation
 import RealmSwift
 
 
-class HealthsTwo: Object {
+class HealthsOne: Object {
     
-    @objc dynamic var healthTwo: Int
+    
+    
+    @objc dynamic var healthOne: Int
     
     override init() {
-        healthTwo=20
+        healthOne=20
     }
- 
+
 }
-
-
